@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Floating Widget</string>
+    <string name="click_me_text">Click Me</string>
+    <string name="click_button_hint">Click Button to View Floating Widget</string>
+</resources>
