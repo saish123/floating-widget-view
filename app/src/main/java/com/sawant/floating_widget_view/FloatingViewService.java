@@ -14,6 +14,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import java.io.IOException;
+
 public class FloatingViewService extends Service {
 
     private View floatingView;
@@ -89,15 +91,20 @@ public class FloatingViewService extends Service {
             public void onClick(View v) {
 //                getApplicationContext().st
 
-                if (mediaPlayer == null) {
-                    initilizeMediaPlayer();
-                }
-                mediaPlayer.setLooping(true);
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
-                    mediaPlayer.start();
-                } else {
-                    mediaPlayer.start();
+                try {
+                    if (mediaPlayer == null) {
+                        initilizeMediaPlayer();
+                    }
+                    mediaPlayer.setLooping(true);
+                    if (mediaPlayer.isPlaying()) {
+                        mediaPlayer.stop();
+                        mediaPlayer.prepare();
+                        mediaPlayer.start();
+                    } else {
+                        mediaPlayer.start();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
 
 
